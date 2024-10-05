@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         return response()->json([

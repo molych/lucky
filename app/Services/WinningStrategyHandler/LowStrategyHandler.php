@@ -9,7 +9,7 @@ class LowStrategyHandler extends WinningStrategyHandler
     public function handle(int $number): ?\App\Contracts\WinningStrategy
     {
         if ($number > 300) {
-            return new LowWinStrategy();
+            return new LowWinStrategy;
         }
 
         return parent::handle($number);

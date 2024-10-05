@@ -11,6 +11,7 @@ class WinningStrategyHandler
     public function setNext(WinningStrategyHandler $handler): WinningStrategyHandler
     {
         $this->nextHandler = $handler;
+
         return $handler;
     }
 

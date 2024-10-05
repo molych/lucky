@@ -24,10 +24,6 @@ class History extends Model
         'win_amount',
     ];
 
-
-    /**
-     * @return BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -35,15 +31,11 @@ class History extends Model
 
     /**
      * Get user histories based on the count and show-history parameter.
-     *
-     * @param Request $request
-     * @param int $count
-     * @return Collection
      */
     public static function getUserHistories(Request $request, int $count): Collection
     {
         return Arr::get($request->all(), 'show-history') ?
             $request->user()->histories()->latest()->take($count)->get() :
-            new Collection();
+            new Collection;
     }
 }
