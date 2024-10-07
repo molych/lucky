@@ -1,11 +1,11 @@
 <script setup>
 import { computed } from 'vue';
 
-const emit = defineEmits(['update:checked']);
+const emit = defineEmits([ 'update:checked' ]);
 
 const props = defineProps({
     checked: {
-        type: [Array, Boolean],
+        type: [ Array, Boolean ],
         required: true,
     },
     value: {
@@ -14,11 +14,11 @@ const props = defineProps({
 });
 
 const proxyChecked = computed({
-    get() {
+    get () {
         return props.checked;
     },
 
-    set(val) {
+    set (val) {
         emit('update:checked', val);
     },
 });

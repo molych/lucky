@@ -6,7 +6,7 @@ use App\Contracts\WinningStrategy;
 
 class WinningStrategyHandler
 {
-    private $nextHandler;
+    private WinningStrategyHandler $nextHandler;
 
     public function setNext(WinningStrategyHandler $handler): WinningStrategyHandler
     {
@@ -15,12 +15,9 @@ class WinningStrategyHandler
         return $handler;
     }
 
-    public function handle(int $number): ?WinningStrategy
+    public function handle(int $number): WinningStrategy
     {
-        if ($this->nextHandler) {
-            return $this->nextHandler->handle($number);
-        }
+        return $this->nextHandler->handle($number);
 
-        return null;
     }
 }

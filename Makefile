@@ -12,3 +12,6 @@ pint:
 
 lint:
 	npm run eslint --ext .js,.vue --ignore-path .gitignore --fix src
+
+ignore-lint:
+	npm run eslint . --ignore-pattern 'vendor/*' --ignore-pattern 'node_modules/*' --fix

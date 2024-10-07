@@ -2,25 +2,30 @@ import pluginJs from '@eslint/js';
 import pluginImport from 'eslint-plugin-import';
 import pluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
+import parserVue from 'vue-eslint-parser';
 
 export default [
+    pluginJs.configs.recommended,
     {
-        plugins: {
-            vue: pluginVue,
-            import: pluginImport,
-        },
         files: [ '**/*.{js,mjs,cjs,vue}' ],
-        ignores: [ 'node_modules/**', 'vendor/**' ],
+        ignores: [ './node_modules/', './vendor/' ],
         languageOptions: {
             globals: globals.browser,
             ecmaVersion: 'latest',
             sourceType: 'module',
+            parser: parserVue,
+            parserOptions: {
+                parser: '@babel/eslint-parser',
+                sourceType: 'module',
+            },
+        },
+        plugins: {
+            vue: pluginVue,
+            import: pluginImport,
         },
         rules: {
-            ...pluginJs.configs.recommended.rules,
             ...pluginVue.configs.essential.rules,
             ...pluginImport.configs.recommended.rules,
-
             'no-param-reassign': [ 2, { props: false } ],
             'no-console': [ 'warn', { allow: [ 'warn', 'error' ] } ],
             'space-before-function-paren': [ 'error', 'always' ],
@@ -65,20 +70,11 @@ export default [
             'vue/max-attributes-per-line': [
                 'error',
                 {
-                    singleline: {
-                        max: 1,
-                    },
-                    multiline: {
-                        max: 1,
-                    },
+                    singleline: { max: 1 },
+                    multiline: { max: 1 },
                 },
             ],
-            'vue/html-closing-bracket-newline': [
-                2,
-                {
-                    multiline: 'always',
-                },
-            ],
+            'vue/html-closing-bracket-newline': [ 2, { multiline: 'always' } ],
             'vue/v-slot-style': [
                 'error',
                 {
@@ -133,10 +129,8 @@ export default [
             'vue/no-undef-properties': 'error',
             'vue/no-unused-properties': 'warn',
             'vue/no-unused-vars': 'warn',
-
             'vuejs-accessibility/click-events-have-key-events': 'off',
             'vuejs-accessibility/mouse-events-have-key-events': 'off',
-
             'import/no-named-as-default': 'off',
             'import/order': [
                 'error',
@@ -146,12 +140,7 @@ export default [
                         caseInsensitive: true,
                     },
                     'newlines-between': 'always',
-                    'groups': [
-                        [ 'builtin', 'external' ],
-                        'internal',
-                        'parent',
-                        [ 'sibling', 'index' ],
-                    ],
+                    'groups': [ [ 'builtin', 'external' ], 'internal', 'parent', [ 'sibling', 'index' ] ],
                     'pathGroups': [
                         {
                             pattern: '@/**',
@@ -161,7 +150,6 @@ export default [
                     'pathGroupsExcludedImportTypes': [ 'builtin' ],
                 },
             ],
-
             'no-dupe-class-members': 'error',
             'no-redeclare': [ 'error', { builtinGlobals: true } ],
         },

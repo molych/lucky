@@ -5,10 +5,10 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     server: {
         host: '0.0.0.0',
-        port: 5173, // Убедитесь, что это порт, на котором работает Vite
+        port: 5173,
         hmr: {
             host: 'localhost',
-            port: 5173, // Убедитесь, что это соответствует порту Vite
+            port: 5173,
         },
     },
     css: {

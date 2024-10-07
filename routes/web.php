@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\PageAController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -35,10 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/page-a', [PageAController::class, 'index'])->name('page-a.index');
+
+    Route::get('/page-a/{link}', [PageAController::class, 'index'])->name('page-a.index')
+        ->middleware('check.link.expiration');
 
     Route::post('/page-a/im-feeling-lucky', [PageAController::class, 'imFeelingLucky'])->name('page-a.im-feeling-lucky');
     Route::get('/histories', [HistoryController::class, 'index'])->name('histories.index');
+
+    Route::post('/activate-link', [LinkController::class, 'activateLink'])->name('link.activate');
+    Route::post('/deactivate-link', [LinkController::class, 'deactivateLink'])->name('link.deactivate');
 });
 
 require __DIR__.'/auth.php';

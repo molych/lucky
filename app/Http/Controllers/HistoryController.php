@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ConfigValidator;
 use App\Http\Resources\HistoryResource;
 use App\Models\History;
 use Illuminate\Http\JsonResponse;
@@ -12,7 +13,9 @@ class HistoryController extends Controller
     public function index(Request $request): JsonResponse
     {
         return response()->json([
-            'histories' => HistoryResource::collection(History::getUserHistories($request, config('settings.history_count')))->resolve(),
+            'histories' => HistoryResource::collection(
+                History::getUserHistories($request, ConfigValidator::getValidatedHistoryCount()))
+                ->resolve(),
         ]);
     }
 }

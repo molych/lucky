@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class History extends Model
+class Link extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +20,8 @@ class History extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'random_number',
-        'result',
-        'win_amount',
+        'link',
+        'expired_at',
     ];
 
     /**

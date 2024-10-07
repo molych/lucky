@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ConfigValidator;
 use App\Http\Resources\HistoryResource;
 use App\Models\History;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Services\ResultCheckerService;
 use App\Services\WinningStrategyFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -35,7 +37,7 @@ class PageAController extends Controller
     {
         return Inertia::render('PageA', [
             'histories' => HistoryResource::collection(
-                History::getUserHistories($request, config('settings.history_count')))
+                History::getUserHistories($request, ConfigValidator::getValidatedHistoryCount()))
                 ->resolve(),
         ]);
     }
@@ -58,7 +60,7 @@ class PageAController extends Controller
         return response()->json([
             'history' => HistoryResource::make($history),
             'histories' => HistoryResource::collection(
-                History::getUserHistories($request, config('settings.history_count')))
+                History::getUserHistories($request, ConfigValidator::getValidatedHistoryCount()))
                 ->resolve(),
         ]);
     }
