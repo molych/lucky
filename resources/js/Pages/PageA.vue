@@ -69,26 +69,26 @@ const generateLuckyNumber = async () => {
                 <div class="bg-white shadow sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 space-y-4">
                         <button @click="generateLink"
-                                class="px-4 py-2 bg-blue-500 text-white font-semibold
-                         rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition"
+                                class="px-4 py-2 bg-yellow-500 text-white font-semibold
+                         rounded-lg shadow-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition"
                         >
                             Generate link
                         </button>
-
+                        <div class="w-100 text-center"/>
                         <button @click="deactivateLink"
-                                class="px-4 py-2 bg-blue-500 text-white font-semibold
-                         rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition"
+                                class="px-4 py-2 bg-red-500 text-white font-semibold
+                         rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition"
                         >
                             Deactivate link
                         </button>
-
+                        <div class="w-100 text-center"/>
                         <button @click="generateLuckyNumber"
                                 class="px-4 py-2 bg-blue-500 text-white font-semibold
                          rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition"
                         >
                             I'm Feeling Lucky
                         </button>
-
+                        <div class="w-100 text-center"/>
                         <div v-if="state.randomNumber"
                              class="mt-6 p-4 bg-white shadow-sm rounded-lg border border-gray-200"
                         >
@@ -117,7 +117,6 @@ const generateLuckyNumber = async () => {
                                 </p>
                             </div>
                         </div>
-
                         <div>
                             <Button  v-if="!state.histories?.length"
                                      @click="fetchHistory({'show-history' : true })"
